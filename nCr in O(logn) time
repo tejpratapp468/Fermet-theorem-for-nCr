@@ -9,8 +9,7 @@ unsigned long long power(unsigned long long x, int y, int p)
 {
     unsigned long long res = 1; // Initialize result
  
-    x = x % p; // Update x if it is more than or
-    // equal to p
+    x = x % p; // Update x if it is more than or equal to p
  
     while (y > 0) 
     {
@@ -56,6 +55,7 @@ unsigned long long nCrModPFermat(unsigned long long n,
 
 void solve()
 {
+int p=1e9 + 7;
     ll ans=nCrModPFermat(n,r, p);
     cout<<ans<<endl;
 }
