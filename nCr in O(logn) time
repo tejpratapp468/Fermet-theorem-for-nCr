@@ -5,6 +5,14 @@
 using namespace std;
 long long mod=1000000007;
 
+unsigned long long fac[1000001]; //adjust the size of fac[] according to question if constrainst are n<=1000 then make fac[1001] 
+void precompute()
+{
+ // Fill factorial array so that we   can find all factorial of r, n and n-r
+    fac[0] = 1;
+    for (int i = 1; i <= 1000000; i++)
+        fac[i] = (fac[i - 1] * i) % mod;
+}
 unsigned long long power(unsigned long long x, int y, int p)
 {
     unsigned long long res = 1; // Initialize result
@@ -41,13 +49,7 @@ unsigned long long nCrModPFermat(unsigned long long n,
     // Base case
     if (r == 0)
         return 1;
- 
-    // Fill factorial array so that we   can find all factorial of r, n and n-r
-    unsigned long long fac[n + 1];
-    fac[0] = 1;
-    for (int i = 1; i <= n; i++)
-        fac[i] = (fac[i - 1] * i) % p;
- 
+  
     return (fac[n] * modInverse(fac[r], p) % p
             * modInverse(fac[n - r], p) % p)% p;
 }
@@ -55,14 +57,14 @@ unsigned long long nCrModPFermat(unsigned long long n,
 
 void solve()
 {
-int p=1e9 + 7;
-    ll ans=nCrModPFermat(n,r, p);
+    ll ans=nCrModPFermat(i-j+1,k, p);
     cout<<ans<<endl;
 }
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0);cout.tie(0);
+    precompute();
     int t;cin>>t;
     while(t--)
     {
